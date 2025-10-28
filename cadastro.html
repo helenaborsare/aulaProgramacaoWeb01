@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="imagem/Microsoft-Fluentui-Emoji-3d-Purple-Heart-3d.32.png" type="image/x-icon">
+        <title>Cadastro</title>
+    </head>
+
+    <body>
+        <header>
+            <img src="./imagem/Microsoft-Fluentui-Emoji-3d-Purple-Heart-3d.32.png"/>
+            <h1>Perifa no Toque</h1>
+            <nav>
+                <div>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="projeto.html">Projeto</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                </ul>
+                </div>
+            </nav>
+        </header>
+
+        <h2>Cadastro de Voluntários</h2>
+        <form>
+            <fieldset>
+                <legend>Informações pesosais</legend>
+                    <div>
+                        <label for="inome">Nome *:</label>
+                        <input type="text" name="nome" id="inome" required/>
+                    </div>
+                    <div>
+                        <label for="isobrenome">Sobrenome *:</label>
+                        <input type="text" name="sobrenome" id="isobrenome" required/>
+                    </div>
+                    <div>
+                        <label for="inascim">Data de Nascimento *</label>
+                        <input type="date" name="nascim" id="inascim" required/>
+                    </div>
+                    <div>
+                        <label for="icpf">CPF *</label>
+                        <input type="text" name="cpf" id="icpf" required/>
+                    </div>
+                    <div>
+                        <label for="iemail">E-mail *</label>
+                        <input type="email" name="email" id="iemail" required/>
+                    </div>
+                    <div>
+                        <label for="itel">Celular *</label>
+                        <input type="tel" name="tel" id="itel" required/>
+                    </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Disponibilidade</legend>
+                <div>
+                    <label for="iarea">Como gostaria de ajudar?</label>
+                    <select name="area" id="iarea" required>
+                        <option value="Planejamento de Eventos">Planejamento de Eventos</option>
+                        <option value="Oficinas de Dança">Oficinas de Dança</option>
+                        <option value="Comunicação e Redes Sociais">Comunicação e Redes Sociais</option>
+                        <option value="Captação de Recursos">Captação de Recursos</option>
+                    </select>
+
+                </div>
+                <div>
+                    <label for="itemp">Disponibilidade de tempo</label>
+                    <select name="temp" id="itemp" required>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
+                        <option value="Fim de Semana">Fim de Semana</option>
+                    </select>
+                </div>
+            </fieldset>            
+            <fieldset>
+                <legend>Fale sobre você</legend>
+                <div>
+                    <label for="iint">Por que gostaria de ser voluntário?</label>
+                    <input type="text" name="int" id="iint" minlenghts="20"/>
+                </div>
+            </fieldset>            
+
+            <fieldset>
+                <input type="submit" value="Enviar"/>
+                <input type="reset" value="Limpar"/>
+            </fieldset>
+        </form> 
+    </body>
+
+    <footer>
+        <p>&copy; 2025 ONG PERIFA NO TOQUE. TODOS OS DIREITOS RESERVADOS.</p>    
+    </footer>
+</html>
