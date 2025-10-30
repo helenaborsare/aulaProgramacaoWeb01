@@ -1,0 +1,313 @@
+/* Título principal */
+main h2 {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(107, 70, 193, 0.1);
+}
+
+/* Estilos do formulário */
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--color-primary);
+}
+
+/* Fieldsets */
+fieldset {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    margin: 25px 0;
+    padding: 25px;
+    background: var(--color-neutral-light);
+    transition: all 0.3s ease;
+}
+
+/* Fieldsets com diferentes cores */
+fieldset:nth-child(1) {
+    border-left: 4px solid var(--color-primary);
+}
+
+fieldset:nth-child(2) {
+    border-left: 4px solid var(--color-success);
+}
+
+fieldset:nth-child(3) {
+    border-left: 4px solid var(--color-warning);
+}
+
+fieldset:nth-child(4) {
+    border-left: 4px solid var(--color-accent);
+}
+
+fieldset:nth-child(5) {
+    border-left: 4px solid var(--color-secondary);
+}
+
+fieldset:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 5px 15px rgba(107, 70, 193, 0.1);
+}
+
+fieldset:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 5px 15px rgba(107, 70, 193, 0.2);
+    background: white;
+}
+
+/* Legendas de fieldset */
+legend {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 0 15px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(107, 70, 193, 0.1);
+}
+
+/* Legendas com diferentes cores */
+fieldset:nth-child(1) legend {
+    color: var(--color-primary);
+}
+
+fieldset:nth-child(2) legend {
+    color: var(--color-success);
+}
+
+fieldset:nth-child(3) legend {
+    color: var(--color-warning);
+}
+
+fieldset:nth-child(4) legend {
+    color: var(--color-accent);
+}
+
+fieldset:nth-child(5) legend {
+    color: var(--color-secondary);
+}
+
+/* Containers de campos */
+fieldset div {
+    margin-bottom: 20px;
+}
+
+/* Etiquetas */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Campos obrigatórios */
+input[required] {
+    border-left: 4px solid var(--color-warning);
+}
+
+input[required]:focus {
+    border-left: 4px solid var(--color-primary);
+}
+
+/* Selects */
+select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Botões */
+input[type="submit"],
+input[type="reset"] {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 10px 0 0;
+    box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(107, 70, 193, 0.4);
+}
+
+input[type="reset"] {
+    background: linear-gradient(135deg, var(--color-neutral-dark), #6b7280);
+    box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
+}
+
+input[type="reset"]:hover {
+    box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
+    background: linear-gradient(135deg, var(--color-error), #ef4444);
+}
+
+/* Estilo para botão submit desabilitado */
+input[type="submit"]:disabled {
+    background: linear-gradient(135deg, #9ca3af, #d1d5db);
+    color: #6b7280;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
+    transform: none;
+}
+
+input[type="submit"]:disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
+    background: linear-gradient(135deg, #9ca3af, #d1d5db);
+}
+
+/* Fieldset de botões */
+fieldset:last-child {
+    background: white;
+    border: none;
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+}
+
+/* Efeitos de validação */
+input:valid {
+    border-color: var(--color-success);
+}
+
+input:invalid:not(:placeholder-shown) {
+    border-color: var(--color-error);
+}
+
+/* Animações */
+form {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+fieldset {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+fieldset:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+fieldset:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+fieldset:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+fieldset:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Design responsivo */
+@media (max-width: 768px) {
+    main h2 {
+        font-size: 2rem;
+    }
+    
+    form {
+        padding: 20px;
+    }
+    
+    fieldset {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    legend {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
+    
+    input[type="submit"],
+    input[type="reset"] {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    main h2 {
+        font-size: 1.8rem;
+    }
+    
+    form {
+        padding: 15px;
+    }
+    
+    fieldset {
+        padding: 15px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select {
+        padding: 10px 12px;
+    }
+}

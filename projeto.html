@@ -5,50 +5,122 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="imagem/Microsoft-Fluentui-Emoji-3d-Purple-Heart-3d.32.png" type="image/x-icon">
         <title>Projetos</title>
+        <link rel="stylesheet" href="styles/main.css">
     </head>
-    <header>
-        <img src="./imagem/Microsoft-Fluentui-Emoji-3d-Purple-Heart-3d.32.png"/>
-            <h1>Perifa no Toque</h1>
-            <nav>
-                <ul id="navmenu">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="projeto.html">Projeto</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
-                </ul>                                    
-            </nav>
-    </header>
     <body>
-        <h1>Nossos Projetos</h1>
-        <p> Na Perifa no Toque, a dança é mais do que movimento — é voz, resistência e transformação.
-    Nossos projetos nascem da quebrada, com o pé no chão da Zona Leste e o olhar voltado para o futuro.
-    Acreditamos que a arte pode abrir caminhos, fortalecer identidades e criar oportunidades reais para nossa juventude.</p>
-        <p> Conheça um pouco do que a gente faz!</p>
+<header>
+            <div class="container container-header">
+                <div class="grid align-center">
+                    <div class="col-11 md:col-6 lg:col-8">
+                        <div class="logo-container">
+                            <img class="logo" src="./imagem/Microsoft-Fluentui-Emoji-3d-Purple-Heart-3d.32.png"/>
+                            <h1>Perifa no Toque</h1>
+                        </div>
+                    </div>
+                    <div class="col-1 md:col-6 lg:col-4">
+                        <nav class="nav">
+                            <button class="hamburger" id="hamburger" aria-label="Abrir menu de navegação">
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                            </button>
+                            
+                            <ul class="menu" id="menu">
+                                <li class="menu-item-li">
+                                    <a class="menu-item" href="index.html">Início</a>
+                                </li>
+                                <li class="menu-item-li">
+                                    <a class="menu-item" href="projeto.html">Projeto</a>
+                                </li>
+                                <li class="menu-item-li">
+                                    <a class="menu-item" href="cadastro.html">Cadastro</a>
+                                </li>
+                            </ul>
+                            
+                            <div class="menu-overlay" id="menu-overlay"></div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="grid grid-center">
+                    <div class="col-12">
+                        <h1>Nossos Projetos</h1>
+                    </div>
+                </div>
+                
+                <div class="grid content-container">
+                    <div class="col-12 md:col-6">
+                        <div class="hero-image">
+                            <img src="imagem/danca.jpg" alt="Dançarinos da Perifa no Toque em ação" class="project-hero-img">
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="hero-text">
+                            <p> Na Perifa no Toque, a dança é mais do que movimento — é voz, resistência e transformação.
+                        Nossos projetos nascem da quebrada, com o pé no chão da Zona Leste e o olhar voltado para o futuro.
+                        Acreditamos que a arte pode abrir caminhos, fortalecer identidades e criar oportunidades reais para nossa juventude.</p>
+                            <p> Conheça um pouco do que a gente faz!</p>
+                        </div>
+                    </div>
+                </div>
 
-        <h2>Oficina Mimitos</h2>
-        <p> Oferecemos <strong>oficinas gratuitas</strong> de danças urbanas — como passinho, hip hop, locking e funk — abertas para crianças e jovens da comunidade.</p>
-        <p> Aqui, cada aluno aprende no seu ritmo, desenvolve confiança e descobre novas formas de se expressar.
-            Os encontros acontecem semanalmente em espaços comunitários e escolas parceiras da região.</p>
+                <div class="grid">
+                    <div class="col-12 lg:col-4">
+                        <section>
+                            <h2>Oficina Mimitos</h2>
+                            <p> Oferecemos <strong>oficinas gratuitas</strong> de danças urbanas — como passinho, hip hop, locking e funk — abertas para crianças e jovens da comunidade.</p>
+                            <p> Aqui, cada aluno aprende no seu ritmo, desenvolve confiança e descobre novas formas de se expressar.
+                                Os encontros acontecem semanalmente em espaços comunitários e escolas parceiras da região.</p>
+                        </section>
+                    </div>
 
-        <h2>Voz é poder</h2>
-        <p> Um projeto que une dança e cidadania. Com objetivo de formar cidadãos conscinetes e aristas com propósito.</p>
-        <p> Além das aulas práticas, realizamos rodas de conversa sobre autoestima, racismo, gênero e protagonismo juvenil.
-            Queremos que cada participante entenda que dançar é também uma forma de ocupar espaços e contar sua própria história.</p>
+                    <div class="col-12 lg:col-4">
+                        <section>
+                            <h2>Voz é poder</h2>
+                            <p> Um projeto que une dança e cidadania. Com objetivo de formar cidadãos conscinetes e aristas com propósito.</p>
+                            <p> Além das aulas práticas, realizamos rodas de conversa sobre autoestima, racismo, gênero e protagonismo juvenil.
+                                Queremos que cada participante entenda que dançar é também uma forma de ocupar espaços e contar sua própria história.</p>
+                        </section>
+                    </div>
 
-        <h2>Batalha no Toque</h2>
-        <p> Nosso evento semestral que reúne dançarinos, DJs e MCs da quebrada em batalhas de dança, showcases e apresentações abertas ao público.
-        Mais do que competição, é encontro, cultura e resistência, criando pontes entre a arte e a comunidade</p>
+                    <div class="col-12 lg:col-4">
+                        <section>
+                            <h2>Batalha no Toque</h2>
+                            <p> Nosso evento semestral que reúne dançarinos, DJs e MCs da quebrada em batalhas de dança, showcases e apresentações abertas ao público.
+                            Mais do que competição, é encontro, cultura e resistência, criando pontes entre a arte e a comunidade</p>
+                        </section>
+                    </div>
+                </div>
 
-    <section>
-        <h2>Contato</h2>
-        <adress>
-            <p>Endereço: R. da Resistência, 123. Bairro Submundo, Itaquaquecetuba - SP</p>
-            <p>Telefone: (11) 9 8765-4321</p>
-            <p>Email: contato@ongpnt.org</p>
-        </adress>
-    </section>
+                <div class="grid grid-center">
+                    <div class="col-12 lg:col-6">
+                        <section>
+                            <h2>Contato</h2>
+                            <address>
+                                <p>Endereço: R. da Resistência, 123. Bairro Submundo, Itaquaquecetuba - SP</p>
+                                <p>Telefone: (11) 9 8765-4321</p>
+                                <p>Email: contato@ongpnt.org</p>
+                            </address>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
         
+        <footer>
+            <div class="container">
+                <div class="grid grid-center">
+                    <div class="col-12">
+                        <p class="footer-text">&copy; 2025 ONG PERIFA NO TOQUE. TODOS OS DIREITOS RESERVADOS.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <script src="js/hamburger-menu.js"></script>
+
     </body>
-    <footer>
-        <p>&copy; 2025 ONG PERIFA NO TOQUE. TODOS OS DIREITOS RESERVADOS.</p>
-    </footer>
 </html>

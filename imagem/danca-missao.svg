@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo circular -->
+  <circle cx="100" cy="100" r="90" fill="url(#gradient2)" opacity="0.1"/>
+  
+  <!-- Grupo de danzantes -->
+  <g fill="url(#gradient2)">
+    <!-- Danzante 1 (izquierda) -->
+    <g>
+      <circle cx="70" cy="60" r="8"/>
+      <rect x="67" y="68" width="6" height="25" rx="3"/>
+      <rect x="55" y="75" width="15" height="4" rx="2" transform="rotate(-45 62.5 77)"/>
+      <rect x="75" y="75" width="15" height="4" rx="2" transform="rotate(45 82.5 77)"/>
+      <rect x="65" y="93" width="4" height="20" rx="2" transform="rotate(-15 67 103)"/>
+      <rect x="71" y="93" width="4" height="20" rx="2" transform="rotate(15 73 103)"/>
+    </g>
+    
+    <!-- Danzante 2 (centro) -->
+    <g>
+      <circle cx="100" cy="50" r="10"/>
+      <rect x="96" y="60" width="8" height="30" rx="4"/>
+      <rect x="82" y="68" width="18" height="5" rx="2.5" transform="rotate(-20 91 70.5)"/>
+      <rect x="100" y="68" width="18" height="5" rx="2.5" transform="rotate(20 109 70.5)"/>
+      <rect x="94" y="90" width="5" height="25" rx="2.5" transform="rotate(-10 96.5 102.5)"/>
+      <rect x="101" y="90" width="5" height="25" rx="2.5" transform="rotate(10 103.5 102.5)"/>
+    </g>
+    
+    <!-- Danzante 3 (derecha) -->
+    <g>
+      <circle cx="130" cy="65" r="8"/>
+      <rect x="127" y="73" width="6" height="25" rx="3"/>
+      <rect x="115" y="80" width="15" height="4" rx="2" transform="rotate(-30 122.5 82)"/>
+      <rect x="135" y="80" width="15" height="4" rx="2" transform="rotate(30 142.5 82)"/>
+      <rect x="125" y="98" width="4" height="20" rx="2"/>
+      <rect x="131" y="98" width="4" height="20" rx="2" transform="rotate(20 133 108)"/>
+    </g>
+  </g>
+  
+  <!-- Líneas de conexión/unidad -->
+  <g stroke="url(#gradient2)" stroke-width="2" fill="none" opacity="0.4">
+    <path d="M 80 100 Q 100 90 120 100" stroke-dasharray="2,2"/>
+    <circle cx="100" cy="130" r="40" stroke-dasharray="4,4" opacity="0.3"/>
+  </g>
+  
+  <!-- Corazón central (símbolo de misión) -->
+  <path d="M100 140 c-5-10 -20-10 -20 0 c0 10 20 20 20 20 s20-10 20-20 c0-10 -15-10 -20 0z" fill="url(#gradient2)" opacity="0.7"/>
+  
+  <!-- Texto decorativo -->
+  <text x="100" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="url(#gradient2)" font-weight="bold">UNIÃO</text>
+</svg>

@@ -1,0 +1,9 @@
+@import 'variables.css';
+
+@import 'global.css';
+
+@import 'header.css';
+
+@import 'index.css';
+@import 'cadastro.css'; 
+@import 'projeto.css';
