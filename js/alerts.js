@@ -1,7 +1,4 @@
-/**
- * Sistema de Alertas - JavaScript
- * Proporciona funciones para crear y gestionar alertas dinámicas
- */
+
 
 class AlertSystem {
     constructor() {
@@ -10,20 +7,14 @@ class AlertSystem {
         this.init();
     }
 
-    /**
-     * Inicializa el sistema de alertas
-     */
+
     init() {
-        // Crear contenedor de alertas si no existe
         this.createAlertContainer();
         
-        // Configurar event listeners para alertas estáticas
         this.setupStaticAlerts();
     }
 
-    /**
-     * Crea el contenedor principal para alertas dinámicas
-     */
+
     createAlertContainer(position = 'top-right') {
         if (this.alertContainer) {
             this.alertContainer.remove();
@@ -48,9 +39,6 @@ class AlertSystem {
         document.body.appendChild(this.alertContainer);
     }
 
-    /**
-     * Configura event listeners para alertas estáticas en el HTML
-     */
     setupStaticAlerts() {
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('alert-close')) {
@@ -62,10 +50,7 @@ class AlertSystem {
         });
     }
 
-    /**
-     * Crea una nueva alerta
-     * @param {Object} options - Opciones de configuración de la alerta
-     */
+  
     createAlert(options = {}) {
         const {
             type = 'info',
@@ -78,30 +63,24 @@ class AlertSystem {
             position = null
         } = options;
 
-        // Generar ID único
         const alertId = `alert-${++this.alertCounter}`;
 
-        // Crear elemento de alerta
         const alertElement = document.createElement('div');
         alertElement.id = alertId;
         alertElement.className = this.getAlertClasses(type, size, closable, icon);
 
-        // Crear contenido
         const content = this.createAlertContent(type, title, message, icon, closable);
         alertElement.innerHTML = content;
 
-        // Determinar dónde mostrar la alerta
         const container = position ? this.getOrCreateContainer(position) : this.alertContainer;
         container.appendChild(alertElement);
 
-        // Configurar cierre automático
         if (duration > 0) {
             setTimeout(() => {
                 this.closeAlert(alertElement);
             }, duration);
         }
 
-        // Configurar event listener para el botón de cerrar
         if (closable) {
             const closeBtn = alertElement.querySelector('.alert-close');
             if (closeBtn) {
@@ -114,9 +93,6 @@ class AlertSystem {
         return alertElement;
     }
 
-    /**
-     * Obtiene o crea un contenedor para una posición específica
-     */
     getOrCreateContainer(position) {
         let container = document.querySelector(`.alert-container, .alert-container-bottom, .alert-container-center`);
         
@@ -128,9 +104,6 @@ class AlertSystem {
         return container;
     }
 
-    /**
-     * Obtiene la clase CSS para el contenedor según la posición
-     */
     getContainerClass(position) {
         switch (position) {
             case 'top-right': return 'alert-container';
@@ -140,9 +113,7 @@ class AlertSystem {
         }
     }
 
-    /**
-     * Genera las clases CSS para la alerta
-     */
+    
     getAlertClasses(type, size, closable, icon) {
         let classes = ['alert', `alert-${type}`];
         
@@ -161,9 +132,7 @@ class AlertSystem {
         return classes.join(' ');
     }
 
-    /**
-     * Crea el contenido HTML de la alerta
-     */
+    
     createAlertContent(type, title, message, showIcon, closable) {
         const icon = showIcon ? this.getIcon(type) : '';
         const titleHtml = title ? `<h4 class="alert-title">${title}</h4>` : '';
@@ -180,9 +149,7 @@ class AlertSystem {
         `;
     }
 
-    /**
-     * Obtiene el icono SVG para cada tipo de alerta
-     */
+   
     getIcon(type) {
         const icons = {
             success: `<svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -202,9 +169,7 @@ class AlertSystem {
         return icons[type] || icons.info;
     }
 
-    /**
-     * Cierra una alerta con animación
-     */
+  
     closeAlert(alertElement) {
         if (!alertElement) return;
 
@@ -217,9 +182,7 @@ class AlertSystem {
         }, 300);
     }
 
-    /**
-     * Métodos de conveniencia para diferentes tipos de alertas
-     */
+   
     success(title, message, options = {}) {
         return this.createAlert({
             type: 'success',
@@ -256,26 +219,20 @@ class AlertSystem {
         });
     }
 
-    /**
-     * Cierra todas las alertas visibles
-     */
+   
     closeAll() {
         const alerts = document.querySelectorAll('.alert');
         alerts.forEach(alert => this.closeAlert(alert));
     }
 
-    /**
-     * Cambia la posición del contenedor de alertas
-     */
+  
     setPosition(position) {
         this.createAlertContainer(position);
     }
 }
 
-// Crear instancia global del sistema de alertas
 const alertSystem = new AlertSystem();
 
-// Funciones globales de conveniencia
 window.showAlert = (options) => alertSystem.createAlert(options);
 window.showSuccess = (title, message, options) => alertSystem.success(title, message, options);
 window.showError = (title, message, options) => alertSystem.error(title, message, options);
@@ -284,7 +241,6 @@ window.showInfo = (title, message, options) => alertSystem.info(title, message, 
 window.closeAllAlerts = () => alertSystem.closeAll();
 window.setAlertPosition = (position) => alertSystem.setPosition(position);
 
-// Exportar para uso con módulos ES6
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = AlertSystem;
 }

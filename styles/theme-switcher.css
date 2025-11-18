@@ -1,0 +1,125 @@
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.theme-switcher:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.theme-label {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.theme-toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-slider::before {
+    font-size: 14px;
+    transition: opacity 0.2s ease;
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: rgba(107, 70, 193, 0.5);
+}
+
+[data-theme="dark"] .theme-toggle-slider {
+    left: calc(100% - 24px);
+    background: linear-gradient(135deg, #6b46c1, #9333ea);
+}
+
+[data-theme="dark"] .theme-switcher {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(107, 70, 193, 0.4);
+}
+
+[data-theme="dark"] .theme-label {
+    color: #f1f5f9;
+}
+
+/* Desktop: Switcher compacto fuera del menú */
+.theme-switcher-desktop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-switcher-desktop .theme-toggle {
+    width: 50px;
+    height: 26px;
+}
+
+.theme-switcher-desktop .theme-toggle-slider {
+    width: 20px;
+    height: 20px;
+}
+
+[data-theme="dark"] .theme-switcher-desktop .theme-toggle-slider {
+    left: calc(100% - 22px);
+}
+
+/* Ocultar el switcher móvil en desktop */
+.theme-switcher-mobile {
+    display: none;
+}
+
+.theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Móvil: Ocultar desktop switcher y mostrar el del menú */
+@media (max-width: 768px) {
+    .theme-switcher-desktop {
+        display: none;
+    }
+    
+    .theme-switcher-mobile {
+        display: block;
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+}

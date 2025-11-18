@@ -3,23 +3,41 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Início</title>
+        <title>Perifa no Toque</title>
         <link rel="shortcut icon" href="imagem/Microsoft-Fluentui-Emoji-3d-Purple-Heart-3d.32.png" type="image/x-icon">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/toasts.css">
+        <link rel="stylesheet" href="styles/modals.css">
+        <link rel="stylesheet" href="styles/alerts.css">
+        
+        <style>
+            #app-content {
+                transition: opacity 0.2s ease-in-out;
+            }
+            .menu-item.active {
+                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3) !important;
+                transform: translateY(-2px);
+            }
+        </style>
     </head>
     <body>
         <header>
             <div class="container container-header">
                 <div class="grid align-center">
-                    <div class="col-11 md:col-6 lg:col-8">
+                    <div class="col-11 md:col-6">
                         <div class="logo-container">
                             <img class="logo" src="./imagem/Microsoft-Fluentui-Emoji-3d-Purple-Heart-3d.32.png"/>
                             <h1>Perifa no Toque</h1>
                         </div>
                     </div>
-                    <div class="col-1 md:col-6 lg:col-4">
+                    <div class="col-1 md:col-6">
                         <nav class="nav">
+                            <div class="theme-switcher-desktop">
+                                <button class="theme-toggle" id="theme-toggle-desktop" aria-label="Alternar tema">
+                                    <span class="theme-toggle-slider"></span>
+                                </button>
+                            </div>
+                            
                             <button class="hamburger" id="hamburger" aria-label="Abrir menu de navegação">
                                 <span class="hamburger-line"></span>
                                 <span class="hamburger-line"></span>
@@ -27,14 +45,22 @@
                             </button>
                             
                             <ul class="menu" id="menu">
-                                <li class="menu-item-li">
-                                    <a class="menu-item" href="index.html">Início</a>
+                                <li class="menu-item-li theme-switcher-mobile">
+                                    <div class="theme-switcher menu-item">
+                                        <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+                                            <span class="theme-toggle-slider"></span>
+                                        </button>
+                                        <span class="theme-label">Tema</span>
+                                    </div>
                                 </li>
                                 <li class="menu-item-li">
-                                    <a class="menu-item" href="projeto.html">Projeto</a>
+                                    <a class="menu-item" href="#" data-route="/">Início</a>
                                 </li>
                                 <li class="menu-item-li">
-                                    <a class="menu-item" href="cadastro.html">Cadastro</a>
+                                    <a class="menu-item" href="#" data-route="/projeto">Projeto</a>
+                                </li>
+                                <li class="menu-item-li">
+                                    <a class="menu-item" href="#" data-route="/cadastro">Cadastro</a>
                                 </li>
                             </ul>
                             
@@ -44,129 +70,29 @@
                 </div>
             </div>
         </header>
-        <main>
-            <div class="container">
-                <div class="grid grid-center">
-                    <div class="col-12 lg:col-8">
-                        <h2>Seja voluntário!</h2>
-                        <p>Você acredita que a dança pode salvar vidas? Faça parte desse movimento com a gente!</p>
-                        <p><a class="button-voluntario" href="cadastro.html">Quero ser voluntário</a></p>
-                    </div>
-                </div>
-
-                <div class="grid">
-                    <div class="col-12 lg:col-4">
-                        <section>
-                            <div class="section-image">
-                                <img src="imagem/danca-quem-somos.svg" alt="Dançarino representando nossa identidade" class="dance-icon">
-                            </div>
-                            <h2>Quem somos</h2>
-                            <p>A <strong>ONG PERIFA NO TOQUE</strong> nasceu em 2025 em Itaquaquecetuba, no Extremo Leste de São Paulo, dedicada a promover 
-                        as danças urbanas como forma de expressão cultural e inclusão social.</p>
-                        </section>
-                    </div>
-
-                    <div class="col-12 lg:col-4">
-                        <section>
-                            <div class="section-image">
-                                <img src="imagem/danca-missao.svg" alt="Grupo de dançarinos unidos em nossa missão" class="dance-icon">
-                            </div>
-                            <h2>Nossa Missão</h2>
-                            <p>Promover a cultura das danças urbanas como ferramenta de expressão, inclusão social e 
-                        desenvolvimento pessoal para jovens da Zona Leste, oferecendo oficinas, eventos e 
-                        espaços de convivência que incentivem criatividade, disciplina e trabalho em equipe.</p>
-                        </section>
-                    </div>
-
-                    <div class="col-12 lg:col-4">
-                        <section>
-                            <div class="section-image">
-                                <img src="imagem/danca-contato.svg" alt="Dançarino conectando com a comunidade" class="dance-icon">
-                            </div>
-                            <h2>Contato</h2>
-                            <address>
-                                <p>Endereço: R. da Resistência, 123. Bairro Submundo, Itaquaquecetuba - SP</p>
-                                <p>Telefone: (11) 9 8765-4321</p>
-                                <p>Email: contato@ongpnt.org</p>
-                            </address>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <section class="video-section">
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/4EpIzcqRWAg?autoplay=1&mute=1&loop=1&playlist=4EpIzcqRWAg&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1&fs=0&iv_load_policy=3"
-                    title="Dança Urbana - Perifa no Toque"
-                    frameborder="0"></iframe>
-            </div>
-        </section>
+        
+        <main id="app-content"></main>
+        
         <footer>
             <div class="container">
                 <div class="grid grid-center">
-                    <div class="col-12 ">
+                    <div class="col-12">
                         <p class="footer-text">&copy; 2025 ONG PERIFA NO TOQUE. TODOS OS DIREITOS RESERVADOS.</p>
                     </div>
                 </div>
             </div>
         </footer>
         
+        <script src="js/theme-switcher.js"></script>
         <script src="js/toasts.js"></script>
+        <script src="js/modals.js"></script>
+        <script src="js/alerts.js"></script>
         
         <script src="js/hamburger-menu.js"></script>
         
-        <script>
-           
-
-            document.addEventListener('DOMContentLoaded', function() {
-                const sections = document.querySelectorAll('main section');
-                
-                sections.forEach(section => {
-                    section.addEventListener('click', function(event) {
-                        if (event.target.tagName === 'A' || event.target.closest('a')) {
-                            return;
-                        }
-                        
-                        section.style.transform = 'scale(0.98)';
-                        setTimeout(() => {
-                            section.style.transform = '';
-                        }, 150);
-                        
-                        const sectionTitle = section.querySelector('h2').textContent;
-                        let message = 'Descubra como você pode fazer parte deste movimento de dança urbana';
-                        
-                        if (sectionTitle.includes('Quem somos')) {
-                            message = 'Conheça mais sobre nossa história e junte-se à família Perifa no Toque!';
-                        } else if (sectionTitle.includes('Missão')) {
-                            message = 'Ajude-nos a cumprir nossa missão de transformar vidas através da dança!';
-                        } else if (sectionTitle.includes('Contato')) {
-                            message = 'Entre em contato e faça parte da nossa comunidade de dança urbana!';
-                        }
-                        
-                        console.log('Mostrando toast para seção:', sectionTitle);
-                        const toastResult = showToastInfo(
-                            'Junte-se a nós!', 
-                            message,
-                            {
-                                duration: 5000,
-                                position: 'top-right',
-                                action: {
-                                    text: 'Cadastrar',
-                                    type: 'register',
-                                    callback: function() {
-                                        window.location.href = 'cadastro.html';
-                                    }
-                                }
-                            }
-                        );
-                        console.log('Toast criado:', toastResult);
-                    });
-                    
-                    section.style.cursor = 'pointer';
-                });
-            });
-        </script>
+        <!-- Scripts SPA -->
+        <script src="js/templates.js"></script>
+        <script src="js/router.js"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>

@@ -1,8 +1,3 @@
-/**
- * Sistema de Modals - JavaScript
- * Para diálogos modales bloqueantes que requieren interacción del usuario
- */
-
 class ModalSystem {
     constructor() {
         this.activeModals = [];
@@ -10,16 +5,12 @@ class ModalSystem {
         this.init();
     }
 
-    /**
-     * Inicializa el sistema de modales
-     */
+  
     init() {
         this.setupKeyboardEvents();
     }
 
-    /**
-     * Configura eventos de teclado globales
-     */
+  
     setupKeyboardEvents() {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.activeModals.length > 0) {
@@ -31,10 +22,7 @@ class ModalSystem {
         });
     }
 
-    /**
-     * Crea un nuevo modal
-     * @param {Object} options - Opciones de configuración del modal
-     */
+    
     createModal(options = {}) {
         const {
             type = 'info',
@@ -52,15 +40,12 @@ class ModalSystem {
             onCancel = null
         } = options;
 
-        // Generar ID único
         const modalId = `modal-${++this.modalCounter}`;
 
-        // Crear overlay
         const overlay = document.createElement('div');
         overlay.className = 'modal-overlay';
         overlay.setAttribute('aria-hidden', 'true');
 
-        // Crear modal
         const modalElement = document.createElement('div');
         modalElement.id = modalId;
         modalElement.className = this.getModalClasses(type, size, centered);
@@ -68,17 +53,13 @@ class ModalSystem {
         modalElement.setAttribute('aria-modal', 'true');
         modalElement.setAttribute('aria-labelledby', `${modalId}-title`);
 
-        // Crear contenido
         const content = customContent || this.createModalContent(modalId, type, title, message, buttons, closable);
         modalElement.innerHTML = content;
 
-        // Agregar modal al overlay
         overlay.appendChild(modalElement);
 
-        // Agregar al DOM
         document.body.appendChild(overlay);
 
-        // Registrar modal activo
         const modalData = {
             element: overlay,
             modal: modalElement,
@@ -87,18 +68,14 @@ class ModalSystem {
         };
         this.activeModals.push(modalData);
 
-        // Configurar eventos
         this.setupModalEvents(overlay, modalElement, modalData, options);
 
-        // Mostrar modal
         this.showModal(overlay, modalElement, options);
 
         return modalData;
     }
 
-    /**
-     * Genera las clases CSS para el modal
-     */
+    
     getModalClasses(type, size, centered) {
         let classes = ['modal', `modal-${type}`, `modal-${size}`];
         
@@ -109,16 +86,13 @@ class ModalSystem {
         return classes.join(' ');
     }
 
-    /**
-     * Crea el contenido HTML del modal
-     */
+    
     createModalContent(modalId, type, title, message, buttons, closable) {
         const icon = this.getIcon(type);
         const titleHtml = title ? `<h3 class="modal-title" id="${modalId}-title">${title}</h3>` : '';
         const messageHtml = message ? `<div class="modal-message">${message}</div>` : '';
         const closeBtn = closable ? '<button class="modal-close" aria-label="Cerrar modal">&times;</button>' : '';
         
-        // Botones por defecto según el tipo
         const defaultButtons = this.getDefaultButtons(type);
         const modalButtons = buttons || defaultButtons;
         const buttonsHtml = this.createButtonsHtml(modalButtons);
@@ -140,9 +114,6 @@ class ModalSystem {
         `;
     }
 
-    /**
-     * Obtiene botones por defecto según el tipo de modal
-     */
     getDefaultButtons(type) {
         switch (type) {
             case 'confirm':
@@ -166,9 +137,7 @@ class ModalSystem {
         }
     }
 
-    /**
-     * Crea el HTML para los botones
-     */
+   
     createButtonsHtml(buttons) {
         if (!buttons || buttons.length === 0) return '';
 
@@ -179,11 +148,9 @@ class ModalSystem {
         }).join('');
     }
 
-    /**
-     * Configura los event listeners del modal
-     */
+   
     setupModalEvents(overlay, modalElement, modalData, options) {
-        // Click en overlay para cerrar
+        
         if (options.backdrop !== false) {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay && options.closable !== false) {
@@ -192,7 +159,6 @@ class ModalSystem {
             });
         }
 
-        // Botón de cerrar
         const closeBtn = modalElement.querySelector('.modal-close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -200,7 +166,6 @@ class ModalSystem {
             });
         }
 
-        // Botones de acción
         const actionButtons = modalElement.querySelectorAll('.modal-btn');
         actionButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -210,9 +175,6 @@ class ModalSystem {
         });
     }
 
-    /**
-     * Maneja las acciones de los botones
-     */
     handleButtonAction(action, modalData, options) {
         let shouldClose = true;
 
@@ -236,69 +198,55 @@ class ModalSystem {
         }
     }
 
-    /**
-     * Muestra el modal con animación
-     */
+   
     showModal(overlay, modalElement, options) {
-        // Prevenir scroll del body
         document.body.style.overflow = 'hidden';
         
-        // Mostrar con animación
         requestAnimationFrame(() => {
             overlay.classList.add('modal-show');
             modalElement.classList.add('modal-show');
             
-            // Focus en el modal
             const firstFocusable = modalElement.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
             if (firstFocusable) {
                 firstFocusable.focus();
             }
 
-            // Callback onShow
             if (typeof options.onShow === 'function') {
                 options.onShow(modalElement);
             }
         });
     }
 
-    /**
-     * Cierra un modal
-     */
+    
     closeModal(overlay) {
         const modalData = this.activeModals.find(m => m.element === overlay);
         if (!modalData) return;
 
-        // Animación de salida
         overlay.classList.add('modal-hiding');
         modalData.modal.classList.add('modal-hiding');
 
         setTimeout(() => {
-            // Remover del DOM
+            
             if (overlay.parentNode) {
                 overlay.parentNode.removeChild(overlay);
             }
 
-            // Remover de la lista de modales activos
             const index = this.activeModals.indexOf(modalData);
             if (index > -1) {
                 this.activeModals.splice(index, 1);
             }
 
-            // Restaurar scroll si no hay más modales
             if (this.activeModals.length === 0) {
                 document.body.style.overflow = '';
             }
 
-            // Callback onHide
             if (typeof modalData.options.onHide === 'function') {
                 modalData.options.onHide(modalData.modal);
             }
         }, 300);
     }
 
-    /**
-     * Obtiene el icono SVG para cada tipo de modal
-     */
+    
     getIcon(type) {
         const icons = {
             success: `<svg class="modal-icon modal-icon-success" fill="currentColor" viewBox="0 0 20 20">
@@ -321,9 +269,7 @@ class ModalSystem {
         return icons[type] || icons.info;
     }
 
-    /**
-     * Métodos de conveniencia para diferentes tipos de modales
-     */
+    
     alert(title, message, options = {}) {
         return this.createModal({
             type: 'info',
@@ -373,27 +319,20 @@ class ModalSystem {
         });
     }
 
-    /**
-     * Cierra todos los modales
-     */
+   
     closeAll() {
         [...this.activeModals].forEach(modalData => {
             this.closeModal(modalData.element);
         });
     }
 
-    /**
-     * Obtiene el modal activo (el último abierto)
-     */
     getActiveModal() {
         return this.activeModals.length > 0 ? this.activeModals[this.activeModals.length - 1] : null;
     }
 }
 
-// Crear instancia global del sistema de modales
 const modalSystem = new ModalSystem();
 
-// Funciones globales de conveniencia
 window.showModal = (options) => modalSystem.createModal(options);
 window.showModalAlert = (title, message, options) => modalSystem.alert(title, message, options);
 window.showModalConfirm = (title, message, options) => modalSystem.confirm(title, message, options);
@@ -402,7 +341,6 @@ window.showModalWarning = (title, message, options) => modalSystem.warning(title
 window.showModalSuccess = (title, message, options) => modalSystem.success(title, message, options);
 window.closeAllModals = () => modalSystem.closeAll();
 
-// Exportar para uso con módulos ES6
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = ModalSystem;
 }

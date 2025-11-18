@@ -1,23 +1,15 @@
-/**
- * Sistema de Alerts Inline - JavaScript
- * Para notificaciones estáticas dentro del contenido de la página
- */
 
 class InlineAlerts {
     constructor() {
         this.init();
     }
 
-    /**
-     * Inicializa el sistema de alerts inline
-     */
+  
     init() {
         this.setupStaticAlerts();
     }
 
-    /**
-     * Configura event listeners para alerts estáticos en el HTML
-     */
+
     setupStaticAlerts() {
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('alert-close')) {
@@ -29,11 +21,7 @@ class InlineAlerts {
         });
     }
 
-    /**
-     * Crea una alerta inline en un contenedor específico
-     * @param {string|HTMLElement} container - Selector o elemento contenedor
-     * @param {Object} options - Opciones de configuración
-     */
+
     createAlert(container, options = {}) {
         const {
             type = 'info',
@@ -45,7 +33,7 @@ class InlineAlerts {
             persistent = false
         } = options;
 
-        // Obtener contenedor
+      
         const containerElement = typeof container === 'string' 
             ? document.querySelector(container) 
             : container;
@@ -55,18 +43,18 @@ class InlineAlerts {
             return null;
         }
 
-        // Crear elemento de alerta
+      
         const alertElement = document.createElement('div');
         alertElement.className = this.getAlertClasses(type, size, closable, icon);
 
-        // Crear contenido
+   
         const content = this.createAlertContent(type, title, message, icon, closable);
         alertElement.innerHTML = content;
 
-        // Insertar en el contenedor
+      
         containerElement.insertBefore(alertElement, containerElement.firstChild);
 
-        // Configurar event listener para el botón de cerrar
+       
         if (closable) {
             const closeBtn = alertElement.querySelector('.alert-close');
             if (closeBtn) {
@@ -76,19 +64,17 @@ class InlineAlerts {
             }
         }
 
-        // Auto-remove si no es persistente
+        
         if (!persistent) {
             setTimeout(() => {
                 this.closeAlert(alertElement);
-            }, 10000); // 10 segundos por defecto para alerts inline
+            }, 10000); 
         }
 
         return alertElement;
     }
 
-    /**
-     * Genera las clases CSS para la alerta
-     */
+    
     getAlertClasses(type, size, closable, icon) {
         let classes = ['alert', `alert-${type}`, 'alert-inline'];
         
@@ -107,9 +93,7 @@ class InlineAlerts {
         return classes.join(' ');
     }
 
-    /**
-     * Crea el contenido HTML de la alerta
-     */
+   
     createAlertContent(type, title, message, showIcon, closable) {
         const icon = showIcon ? this.getIcon(type) : '';
         const titleHtml = title ? `<h4 class="alert-title">${title}</h4>` : '';
@@ -126,9 +110,7 @@ class InlineAlerts {
         `;
     }
 
-    /**
-     * Obtiene el icono SVG para cada tipo de alerta
-     */
+    
     getIcon(type) {
         const icons = {
             success: `<svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -148,9 +130,7 @@ class InlineAlerts {
         return icons[type] || icons.info;
     }
 
-    /**
-     * Cierra una alerta con animación
-     */
+   
     closeAlert(alertElement) {
         if (!alertElement) return;
 
@@ -163,9 +143,7 @@ class InlineAlerts {
         }, 300);
     }
 
-    /**
-     * Métodos de conveniencia para diferentes tipos de alertas inline
-     */
+  
     success(container, title, message, options = {}) {
         return this.createAlert(container, {
             type: 'success',
@@ -202,26 +180,23 @@ class InlineAlerts {
         });
     }
 
-    /**
-     * Cierra todas las alertas inline visibles
-     */
+    
     closeAll() {
         const alerts = document.querySelectorAll('.alert-inline');
         alerts.forEach(alert => this.closeAlert(alert));
     }
 }
 
-// Crear instancia global del sistema de alerts inline
+
 const inlineAlerts = new InlineAlerts();
 
-// Funciones globales de conveniencia
+
 window.showInlineAlert = (container, options) => inlineAlerts.createAlert(container, options);
 window.showInlineSuccess = (container, title, message, options) => inlineAlerts.success(container, title, message, options);
 window.showInlineError = (container, title, message, options) => inlineAlerts.error(container, title, message, options);
 window.showInlineWarning = (container, title, message, options) => inlineAlerts.warning(container, title, message, options);
 window.showInlineInfo = (container, title, message, options) => inlineAlerts.info(container, title, message, options);
 
-// Exportar para uso con módulos ES6
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = InlineAlerts;
 }

@@ -3,6 +3,7 @@
 @import 'global.css';
 
 @import 'header.css';
+@import 'theme-switcher.css';
 
 @import 'index.css';
 @import 'cadastro.css'; 

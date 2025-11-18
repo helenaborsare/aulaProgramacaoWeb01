@@ -1,7 +1,4 @@
-/**
- * Sistema de Toasts - JavaScript
- * Para notificaciones flotantes temporales no intrusivas
- */
+
 
 class ToastSystem {
     constructor() {
@@ -11,16 +8,12 @@ class ToastSystem {
         this.init();
     }
 
-    /**
-     * Inicializa el sistema de toasts
-     */
+   
     init() {
         this.createToastContainer();
     }
 
-    /**
-     * Crea el contenedor principal para toasts
-     */
+  
     createToastContainer(position = 'top-right') {
         if (this.toastContainer) {
             this.toastContainer.remove();
@@ -34,9 +27,7 @@ class ToastSystem {
         document.body.appendChild(this.toastContainer);
     }
 
-    /**
-     * Obtiene la clase CSS para el contenedor según la posición
-     */
+ 
     getContainerClass(position) {
         const baseClass = 'toast-container';
         switch (position) {
@@ -50,10 +41,7 @@ class ToastSystem {
         }
     }
 
-    /**
-     * Crea un nuevo toast
-     * @param {Object} options - Opciones de configuración del toast
-     */
+  
     createToast(options = {}) {
         const {
             type = 'info',
@@ -68,67 +56,55 @@ class ToastSystem {
             progress = false
         } = options;
 
-        // Limitar número de toasts
         this.limitToasts();
 
-        // Generar ID único
         const toastId = `toast-${++this.toastCounter}`;
 
-        // Crear elemento de toast
         const toastElement = document.createElement('div');
         toastElement.id = toastId;
         toastElement.className = this.getToastClasses(type, size, closable, icon, progress);
         toastElement.setAttribute('role', 'alert');
 
-        // Crear contenido
         const content = this.createToastContent(type, title, message, icon, closable, action, progress);
         toastElement.innerHTML = content;
 
-        // Determinar contenedor
         const container = position ? this.getOrCreateContainer(position) : this.toastContainer;
         
-        // Agregar toast al contenedor (al principio para que aparezca arriba)
+        
         container.insertBefore(toastElement, container.firstChild);
 
-        // Mostrar toast con animación (pequeño delay para permitir que el DOM se actualice)
+        
         setTimeout(() => {
             toastElement.classList.add('toast-show');
         }, 10);
 
-        // Configurar barra de progreso si está habilitada
+      
         if (progress && duration > 0) {
             this.animateProgress(toastElement, duration);
         }
 
-        // Configurar cierre automático
         if (duration > 0) {
             setTimeout(() => {
                 this.closeToast(toastElement);
             }, duration);
         }
 
-        // Configurar event listeners
         this.setupToastEvents(toastElement, action);
 
         return toastElement;
     }
 
-    /**
-     * Limita el número de toasts visibles
-     */
+ 
     limitToasts() {
         const toasts = this.toastContainer.querySelectorAll('.toast');
         if (toasts.length >= this.maxToasts) {
-            // Remover los toasts más antiguos
             for (let i = this.maxToasts - 1; i < toasts.length; i++) {
                 this.closeToast(toasts[i]);
             }
         }
     }
 
-    /**
-     * Obtiene o crea un contenedor para una posición específica
-     */
+
     getOrCreateContainer(position) {
         const existingContainer = document.querySelector(`.toast-container`);
         
@@ -139,9 +115,6 @@ class ToastSystem {
         return this.toastContainer;
     }
 
-    /**
-     * Genera las clases CSS para el toast
-     */
     getToastClasses(type, size, closable, icon, progress) {
         let classes = ['toast', `toast-${type}`];
         
@@ -164,9 +137,6 @@ class ToastSystem {
         return classes.join(' ');
     }
 
-    /**
-     * Crea el contenido HTML del toast
-     */
     createToastContent(type, title, message, showIcon, closable, action, progress) {
         const icon = showIcon ? this.getIcon(type) : '';
         const titleHtml = title ? `<h4 class="toast-title">${title}</h4>` : '';
@@ -189,11 +159,8 @@ class ToastSystem {
         `;
     }
 
-    /**
-     * Configura los event listeners del toast
-     */
+   
     setupToastEvents(toastElement, action) {
-        // Botón de cerrar
         const closeBtn = toastElement.querySelector('.toast-close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -201,7 +168,6 @@ class ToastSystem {
             });
         }
 
-        // Botón de acción
         const actionBtn = toastElement.querySelector('.toast-action');
         if (actionBtn && action) {
             actionBtn.addEventListener('click', () => {
@@ -214,7 +180,6 @@ class ToastSystem {
             });
         }
 
-        // Pausar auto-close en hover
         toastElement.addEventListener('mouseenter', () => {
             toastElement.classList.add('toast-paused');
         });
@@ -224,9 +189,7 @@ class ToastSystem {
         });
     }
 
-    /**
-     * Anima la barra de progreso
-     */
+   
     animateProgress(toastElement, duration) {
         const progressBar = toastElement.querySelector('.toast-progress-bar');
         if (progressBar) {
@@ -235,9 +198,7 @@ class ToastSystem {
         }
     }
 
-    /**
-     * Obtiene el icono SVG para cada tipo de toast
-     */
+  
     getIcon(type) {
         const icons = {
             success: `<svg class="toast-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -257,9 +218,7 @@ class ToastSystem {
         return icons[type] || icons.info;
     }
 
-    /**
-     * Cierra un toast con animación
-     */
+ 
     closeToast(toastElement) {
         if (!toastElement || toastElement.classList.contains('toast-hiding')) return;
 
@@ -273,9 +232,7 @@ class ToastSystem {
         }, 300);
     }
 
-    /**
-     * Métodos de conveniencia para diferentes tipos de toasts
-     */
+
     success(title, message, options = {}) {
         return this.createToast({
             type: 'success',
@@ -290,7 +247,7 @@ class ToastSystem {
             type: 'error',
             title,
             message,
-            duration: 6000, // Errores duran más tiempo
+            duration: 6000, 
             ...options
         });
     }
@@ -314,33 +271,25 @@ class ToastSystem {
         });
     }
 
-    /**
-     * Cierra todos los toasts visibles
-     */
+   
     closeAll() {
         const toasts = document.querySelectorAll('.toast');
         toasts.forEach(toast => this.closeToast(toast));
     }
 
-    /**
-     * Cambia la posición del contenedor de toasts
-     */
+ 
     setPosition(position) {
         this.createToastContainer(position);
     }
 
-    /**
-     * Configura el número máximo de toasts
-     */
+
     setMaxToasts(max) {
         this.maxToasts = max;
     }
 }
 
-// Crear instancia global del sistema de toasts
 const toastSystem = new ToastSystem();
 
-// Funciones globales de conveniencia
 window.showToast = (options) => toastSystem.createToast(options);
 window.showToastSuccess = (title, message, options) => toastSystem.success(title, message, options);
 window.showToastError = (title, message, options) => toastSystem.error(title, message, options);
@@ -349,7 +298,6 @@ window.showToastInfo = (title, message, options) => toastSystem.info(title, mess
 window.closeAllToasts = () => toastSystem.closeAll();
 window.setToastPosition = (position) => toastSystem.setPosition(position);
 
-// Exportar para uso con módulos ES6
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = ToastSystem;
 }
